@@ -10,14 +10,32 @@ import { Post } from '../../interfaces/interfaces';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
+
 posts: Post [] = [];
+
+habilitado = true;
+
   constructor(private PostsS: PostsService) {}
   ngOnInit() {
+    this.siguientes();
+  }
+  recargar(event) {
+  this.siguientes(event, true);
+  this.habilitado = true;
+  this.posts = [];
+  }
+  siguientes(event?, pull: boolean = false ) {
 
-    this.PostsS.getPosts().subscribe(resp => {
+this.PostsS.getPosts(pull).subscribe(resp => {
       console.log(resp);
       this.posts.push(...resp.posts);
-    });
+      if (event) {
+        event.target.complete();
 
+        if (resp.posts.length === 0) {
+          this.habilitado = false;
+        }
+      }
+    });
   }
 }

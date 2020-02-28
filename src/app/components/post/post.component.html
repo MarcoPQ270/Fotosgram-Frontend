@@ -9,9 +9,9 @@
     </ion-item>
     <!-- ng if para imagenes -->
     <ion-slides pager="true">
-        <ion-slide>
-            <img src="../../../assets/dead.jpg">
-        </ion-slide>
+        <ion-slide class="image-slide" [style]="img1 | domSanitizer"></ion-slide>
+        <ion-slide class="image-slide" [style]="img2 | domSanitizer"></ion-slide>
+        <ion-slide class="image-slide" [style]="img3 | domSanitizer"></ion-slide>
     </ion-slides>
 
     <!-- Mapa -->
