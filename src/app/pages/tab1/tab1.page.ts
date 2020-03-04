@@ -16,8 +16,13 @@ posts: Post [] = [];
 habilitado = true;
 
   constructor(private PostsS: PostsService) {}
+
   ngOnInit() {
+
     this.siguientes();
+    this.PostsS.nuevoPost.subscribe(post => {
+      this.posts.unshift(post);
+    });
   }
   recargar(event) {
   this.siguientes(event, true);

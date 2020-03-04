@@ -5,12 +5,13 @@ import { PostsComponent } from './posts/posts.component';
 import { IonicModule } from '@ionic/angular';
 import { PipesModule } from '../pipes/pipes.module';
 import { AvatarComponent } from './avatar/avatar.component';
+import { MapaComponent } from './mapa/mapa.component';
 
 
 
 @NgModule({
-  declarations: [PostComponent, PostsComponent, AvatarComponent],
-  exports: [PostsComponent, AvatarComponent],
+  declarations: [PostComponent, PostsComponent, AvatarComponent, MapaComponent],
+  exports: [PostsComponent, AvatarComponent, MapaComponent],
   imports: [
     CommonModule,
     IonicModule,

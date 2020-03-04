@@ -5,7 +5,7 @@
         </ion-title>
 
         <ion-buttons slot="end">
-            <ion-button (click)="crearPost()" color="primary">
+            <ion-button (click)="crearPost()" [disabled]="post.mensaje.length < 1  || CargandoGeo" color="primary">
                 Compartir
             </ion-button>
         </ion-buttons>
@@ -19,14 +19,14 @@
 
         <ion-item>
             <ion-label position="floating">Mensaje</ion-label>
-            <ion-textarea></ion-textarea>
+            <ion-textarea [(ngModel)]="post.mensaje"></ion-textarea>
         </ion-item>
 
         <ion-list>
             <ion-item>
                 <ion-label>Posicion Actual</ion-label>
-                <ion-spinner name="lines-small"></ion-spinner>
-                <ion-toggle slot="end"></ion-toggle>
+                <ion-spinner name="lines-small" *ngIf="CargandoGeo"></ion-spinner>
+                <ion-toggle slot="end" [(ngModel)]="post.posicion" (ionChange)="getGeo()"></ion-toggle>
             </ion-item>
         </ion-list>
 
@@ -35,14 +35,14 @@
 
     <ion-row>
         <ion-col size="6">
-            <ion-button expand="full" shape="round">
+            <ion-button expand="full" (click)="camara()" shape="round">
                 <ion-icon slot="start" name="camera"></ion-icon>
                 Camara
             </ion-button>
         </ion-col>
         <ion-col size="6">
             <ion-button expand="full" shape="round">
-                <ion-icon slot="start" name="images"></ion-icon>
+                <ion-icon slot="start" (click)="libreria()" name="images"></ion-icon>
                 Galeria
             </ion-button>
         </ion-col>
@@ -51,7 +51,7 @@
     <ion-row>
         <ion-col size="3" *ngFor="let image of tempImages">
             <ion-card>
-                <img src="">
+                <img [src]="image">
             </ion-card>
         </ion-col>
     </ion-row>

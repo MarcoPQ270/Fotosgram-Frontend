@@ -12,6 +12,9 @@ import {IonicStorageModule} from '@ionic/storage';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Camera} from '@ionic-native/camera/ngx';
+
 
 
 @NgModule({
@@ -25,7 +28,9 @@ import { AppComponent } from './app.component';
     IonicStorageModule.forRoot()],
   providers: [
     StatusBar,
+    Geolocation,
     SplashScreen,
+    Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

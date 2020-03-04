@@ -54,8 +54,8 @@ export class UsuarioService {
     });
    }
 
-   getUsuario(){
-     if (!this.usuario._id){
+   getUsuario() {
+     if (!this.usuario._id) {
         this.validaToken();
      }
      return {...this.usuario};
@@ -66,7 +66,7 @@ export class UsuarioService {
     this.storage.set('token', token);
   }
 
-  async cargarToken(){
+  async cargarToken() {
 
     this.token = await this.storage.get('token') || null;
   }
@@ -79,7 +79,7 @@ export class UsuarioService {
     }
 
     return new Promise<boolean>(resolve => {
-
+ 
       const headers = new HttpHeaders({
         'x-token': this.token
       });
@@ -100,7 +100,7 @@ export class UsuarioService {
       'x-token': this.token
     });
 
-    return new Promise(resolve => {
+    return new Promise<boolean>(resolve => {
       this.http.post(`${URL}/user/update`, usuario, {headers}).subscribe(resp => {
         console.log(resp);
         if (resp['ok']) {
