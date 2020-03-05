@@ -15,7 +15,7 @@ export class PostsService {
   paginaPost = 0;
   nuevoPost = new EventEmitter<Post>();
 
-  constructor(private http: HttpClient, private usuarioser: UsuarioService) { }
+  constructor(private http: HttpClient, private usuarioser: UsuarioService, private fileTransfer: FileTransfer) { }
 
     getPosts(pull: boolean = false) {
       if (pull) {
@@ -37,24 +37,23 @@ export class PostsService {
       });
 
     }
-    // subirImagen( img: string ) {
+     subirImagen( img: string ) {
 
-    //   const options: FileUploadOptions = {
-    //     fileKey: 'image',
-    //     headers: {
-    //       'x-token': this.usuarioser.token
-    //     }
-    //   };
-  
-    //   const fileTransfer: FileTransferObject = this.usuarioser.create();
-  
-    //   fileTransfer.upload( img, `${ URL }/posts/upload`, options )
-    //     .then( data => {
-    //       console.log(data);
-    //     }).catch( err => {
-    //       console.log('error en carga', err);
-    //     });
-  
-    // }
+       const options: FileUploadOptions = {
+        fileKey: 'image',
+        headers: {
+           'x-token': this.usuarioser.token
+        }
+      };
+
+       const fileTransfer: FileTransferObject = this.fileTransfer.create();
+
+       fileTransfer.upload( img, `${ URL }/posts/upload`, options ).then( data => {
+        console.log(data);
+        }).catch( err => {
+          console.log('error en carga', err);
+         });
+
+     }
 
 }

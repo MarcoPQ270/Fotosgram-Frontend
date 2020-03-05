@@ -5,7 +5,7 @@
         </ion-title>
 
         <ion-buttons slot="end">
-            <ion-button (click)="crearPost()" [disabled]="post.mensaje.length < 1  || CargandoGeo" color="primary">
+            <ion-button (click)="crearPost()" [disabled]="post.mensaje.length < 1 || CargandoGeo" color="primary">
                 Compartir
             </ion-button>
         </ion-buttons>
@@ -24,7 +24,8 @@
 
         <ion-list>
             <ion-item>
-                <ion-label>Posicion Actual</ion-label>
+                <ion-label>Posición actual</ion-label>
+
                 <ion-spinner name="lines-small" *ngIf="CargandoGeo"></ion-spinner>
                 <ion-toggle slot="end" [(ngModel)]="post.posicion" (ionChange)="getGeo()"></ion-toggle>
             </ion-item>
@@ -35,15 +36,15 @@
 
     <ion-row>
         <ion-col size="6">
-            <ion-button expand="full" (click)="camara()" shape="round">
+            <ion-button expand="full" shape="round" (click)="camara()">
                 <ion-icon slot="start" name="camera"></ion-icon>
-                Camara
+                Cámara
             </ion-button>
         </ion-col>
         <ion-col size="6">
-            <ion-button expand="full" shape="round">
-                <ion-icon slot="start" (click)="libreria()" name="images"></ion-icon>
-                Galeria
+            <ion-button expand="full" shape="round" (click)="libreria()">
+                <ion-icon slot="start" name="images"></ion-icon>
+                Galería
             </ion-button>
         </ion-col>
     </ion-row>
@@ -51,7 +52,7 @@
     <ion-row>
         <ion-col size="3" *ngFor="let image of tempImages">
             <ion-card>
-                <img [src]="image">
+                <img [src]="image | domSsanitizer">
             </ion-card>
         </ion-col>
     </ion-row>
