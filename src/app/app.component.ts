@@ -20,7 +20,8 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      // Cambiar el color del status bar
+      this.statusBar.styleLightContent();
       this.splashScreen.hide();
     });
   }

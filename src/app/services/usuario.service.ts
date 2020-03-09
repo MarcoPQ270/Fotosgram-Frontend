@@ -8,6 +8,7 @@ import { resolve } from 'url';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { async } from '@angular/core/testing';
 import { NavController } from '@ionic/angular';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
 const URL = environment.url;
 
@@ -19,7 +20,7 @@ export class UsuarioService {
   token: string = null;
   usuario: Usuario = {};
 
-  constructor(private http: HttpClient, private storage: Storage, private nav: NavController) { }
+  constructor(private http: HttpClient, private storage: Storage, private nav: NavController, private fileTransfer: FileTransfer) { }
 
   login(email: string, password: string) {
     const data = {email, password};
@@ -122,5 +123,20 @@ export class UsuarioService {
       });
     });
   }
+  subirImagenusr( img: string ) {
+
+    const options: FileUploadOptions = {
+      fileKey: 'image',
+    };
+    const fileTransfer: FileTransferObject = this.fileTransfer.create();
+
+    fileTransfer.upload( img, `${ URL }/posts/upload`, options ).then( data => {
+     console.log(data);
+     }).catch( err => {
+       console.log('error en carga', err);
+      });
+
+  }
+
 
 }

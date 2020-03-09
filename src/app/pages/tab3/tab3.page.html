@@ -28,10 +28,7 @@
         </ion-col>
     </ion-row>
 
-
-    <app-avatar (avatarSel)="usuario.avatar = $event" [avatarActual]="usuario.avatar"></app-avatar>
-
-
+    <app-avatar (avatarSel)="registroUser.avatar = $event" [avatarActual]="usuario.avatar"></app-avatar>
     <form (ngSubmit)="actualizar(fActualizar)" #fActualizar>
         <ion-row>
             <ion-col>
@@ -47,8 +44,6 @@
                         <ion-label>Nombre</ion-label>
                         <ion-input name="nombre" type="text" [(ngModel)]="usuario.nombre" required></ion-input>
                     </ion-item>
-
-
                 </ion-list>
             </ion-col>
         </ion-row>
@@ -59,7 +54,9 @@
                     Actualizar
                 </ion-button>
             </ion-col>
+
         </ion-row>
+
 
     </form>
 
